@@ -14,8 +14,6 @@ app.use(logger('dev'));
 
 AWS.config.update({
     region: 'us-east-1',
-    accessKeyId: "AKIAIWJFUHMZXENGSHZA",
-    secretAccessKey: "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"
 });
 
 var DB = new AWS.DynamoDB.DocumentClient();
@@ -37,7 +35,6 @@ app.get('/v1/notes', function(req, res) {
 });
 
 app.post('/v1/notes', function(req, res) {
-    console.log('post note called');
     var reqId = uuid.v4();
     var time = new Date().toString(); // current time in form of a string
     var params = {
