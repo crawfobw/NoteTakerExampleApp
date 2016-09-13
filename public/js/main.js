@@ -20,22 +20,24 @@ var getNotes = function() {
 };
 
 var sortNotes = function(notes) {
-    notes.sort(function(a,b) {
+    var ret = notes.Items;
+    ret.sort(function(a,b) {
         return a.date - b.date;
     });
 
-    return notes;
+    return ret;
 };
 
 var populateNotes = function(notes) {
     var notesTable = $('#displayed-notes');
+    notesTable.html("");
     console.log(notes);
     var sortedNotes = sortNotes(notes);
 
 
     sortedNotes.forEach(function(note) {
         notesTable.append("<tr><td>" + note.date + "</td>" +
-            "<td>" + note.title + "</td>" +
+            "<td><strong>" + note.title + "</strong></td>" +
             "<td>" + note.body + "</td></tr>");
     });
 };
@@ -62,6 +64,7 @@ $(document).ready(function() {
                 'noteBody': $('#note-body').val()
             },
             success: function(data, textStatus, jqXHR) {
+                getNotes()
                 closeModal();
                 console.log(textStatus);
             },
