@@ -29,6 +29,7 @@ var sortNotes = function(notes) {
 
 var populateNotes = function(notes) {
     var notesTable = $('#displayed-notes');
+    console.log(notes);
     var sortedNotes = sortNotes(notes);
 
 
