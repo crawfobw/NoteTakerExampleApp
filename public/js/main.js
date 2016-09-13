@@ -30,6 +30,7 @@ var populateNotes = function(notes) {
 };
 
 $(document).ready(function() {
+    getNotes();
 
     $('#new-note').click(function() {
         $('#create-new-note').css('display', 'block');
