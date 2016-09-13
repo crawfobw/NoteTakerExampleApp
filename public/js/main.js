@@ -19,14 +19,24 @@ var getNotes = function() {
     })
 };
 
+var sortNotes = function(notes) {
+    notes.sort(function(a,b) {
+        return a.date - b.date;
+    });
+
+    return notes;
+};
+
 var populateNotes = function(notes) {
     var notesTable = $('#displayed-notes');
+    var sortedNotes = sortNotes(notes);
 
-    console.log(notes);
 
-    /*notes.forEach(function(note) {
-        notesTable.append("<tr><td></td>" + )
-    })*/
+    sortedNotes.forEach(function(note) {
+        notesTable.append("<tr><td>" + note.date + "</td>" +
+            "<td>" + note.title + "</td>" +
+            "<td>" + note.body + "</td></tr>");
+    });
 };
 
 $(document).ready(function() {
@@ -42,6 +52,7 @@ $(document).ready(function() {
 
     $('#save-note').click(function() {
         console.log('save note clicked');
+        console.log($('#note-title').val());
         $.ajax({
             url: '/v1/notes',
             type: 'POST',
